@@ -69,9 +69,10 @@ if button_load:
     option.add_argument("--headless=new") # No se abre interfaz gráfica
     # option.add_argument('--no-startup-window')
 
-    @st.experimental_singleton
+    @st.experimental_memo
     def get_driver():
         return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    
     driver = get_driver()
 
     # Abrir la página
