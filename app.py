@@ -67,8 +67,8 @@ if button_load:
     option = ChromeOptions()
     option.add_argument("--headless=new") # No se abre interfaz gráfica
     # option.add_argument('--no-startup-window')
-    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install(), options=option))
-    driver = webdriver.Chrome(options=option)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install(), options=option))
+    # driver = webdriver.Chrome(options=option)
     # Abrir la página
     driver.get('https://app.bde.es/sifdifu/es/#/')
     my_bar.progress(15, text='Loading Page')
