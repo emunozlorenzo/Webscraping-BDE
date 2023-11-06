@@ -62,16 +62,20 @@ with col2:
 if button_load:
     progress_text = "Collecting Data from Banco de España"
     my_bar = st.progress(0, text=progress_text)
-    
-    # Configuramos opciones
-    option = ChromeOptions()
-    option.add_argument('--disable-gpu')
-    option.add_argument("--headless=new") # No se abre interfaz gráfica
-    # option.add_argument('--no-startup-window')
 
-    @st.experimental_memo
+    @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
     def get_driver():
-        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        option = webdriver.ChromeOptions()
+        option.add_argument("--headless") #headless
+        option.add_argument("--mute-audio")
+        option.add_argument("--disable-gpu")
+        option.add_argument('--no-sandbox')
+        option.add_argument('--disable-blink-features=AutomationControlled')
+        option.add_argument('--disable-dev-shm-usage') 
+        driver_path = '/usr/local/bin/chromedriver'
+        driver = webdriver.Chrome(service= Service(executable_path=driver_path),options=option)
+        wait = WebDriverWait(driver,35)
+        return driver
     
     driver = get_driver()
 
