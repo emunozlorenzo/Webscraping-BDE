@@ -63,7 +63,7 @@ if button_load:
     progress_text = "Collecting Data from Banco de España"
     my_bar = st.progress(0, text=progress_text)
 
-    @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+    @st.experimental_memo(show_spinner=False)
     def get_driver():
         option = webdriver.ChromeOptions()
         option.add_argument("--headless") #headless
