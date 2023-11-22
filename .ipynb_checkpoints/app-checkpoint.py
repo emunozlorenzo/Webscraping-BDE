@@ -136,6 +136,11 @@ elif selected == 'Stocks':
     
     src.plot_yf(companies=companies,period=period_)
     
+    def header(url):
+         st.markdown(f'<p style="background-color:#072146;color:#ffffff;font-size:20px;border-radius:10px;text-align: center;">{url}</p>', unsafe_allow_html=True)
+
+    header('Last Update')
+    
     @st.cache_data
     def last_update():
         dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC'}
@@ -157,6 +162,7 @@ elif selected == 'Stocks':
         return df[['Bank']+cols[0:4].to_list()]
     table = last_update()
     table[table.columns[1:]] = table[table.columns[1:]].round(2)
+    
     # st.dataframe(table,#.style.applymap(lambda _: "background-color: #002D62; color: white; font-weight: bold"),
     #              height=35*len(table)+38,
     #              width = 700,
@@ -166,8 +172,8 @@ elif selected == 'Stocks':
     column_config={
         "Bank": st.column_config.ImageColumn(
             "Bank", help="Streamlit app preview screenshots",
-            width='medium'
-        )
+            width='medium',
+        ),
     },
      height=35*len(table)+38,
      width = 700,
