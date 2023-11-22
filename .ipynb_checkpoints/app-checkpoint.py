@@ -5,6 +5,7 @@ import time
 import pandas as pd
 import requests
 import src
+import yfinance as yf
 
 # Dates
 @st.cache_data
@@ -134,6 +135,44 @@ elif selected == 'Stocks':
     period_ = st.selectbox(label='Select Period', options=periods, index=5, key='stock_select_box2')
     
     src.plot_yf(companies=companies,period=period_)
+    
+    @st.cache_data
+    def last_update():
+        dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC'}
+        dict_img = {'BBVA': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/2560px-BBVA_2019.svg.png',
+                    'Santander': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png',
+                    'Sabadell': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/BSabadell_Logo.svg/2560px-BSabadell_Logo.svg.png',
+                    'CaixaBank': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_CaixaBank.svg/2560px-Logo_CaixaBank.svg.png',
+                    'Bankinter': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Bankinter.svg/2560px-Bankinter.svg.png'}
+        df = pd.DataFrame()
+        for k,v in dict_ibex35.items():
+            comp = yf.Ticker(v)
+            hist = comp.history(period='1d')
+            hist.reset_index(inplace=True)
+            hist['Bank'] = dict_img[k]
+            df = pd.concat([df, hist], ignore_index=True, sort=False)
+
+        df.drop(columns=['Date','Dividends','Stock Splits'], inplace=True)
+        cols = df.columns
+        return df[['Bank']+cols[0:4].to_list()]
+    table = last_update()
+    table[table.columns[1:]] = table[table.columns[1:]].round(2)
+    # st.dataframe(table,#.style.applymap(lambda _: "background-color: #002D62; color: white; font-weight: bold"),
+    #              height=35*len(table)+38,
+    #              width = 700,
+    #              hide_index=True)
+    st.data_editor(
+    table,
+    column_config={
+        "Bank": st.column_config.ImageColumn(
+            "Bank", help="Streamlit app preview screenshots",
+            width='medium'
+        )
+    },
+     height=35*len(table)+38,
+     width = 700,
+     hide_index=True)
+
 
     
     
