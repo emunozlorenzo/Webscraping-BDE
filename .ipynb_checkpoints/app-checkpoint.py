@@ -28,9 +28,9 @@ selected = option_menu(None,
                        icons=['list-task', 'bank2', "graph-up"], 
                        menu_icon="cast", default_index=0, orientation="horizontal",
                        styles={# "container": {"padding": "0!important", "background-color": "#fafafa"},
-                               "icon": {"color": "#2DCCCD", "font-size": "16px"}, 
-                               "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-                               "nav-link-selected": {"font-size": "16px", "background-color": "#072146"}})
+                               "icon": {"color": "#2DCCCD", "font-size": "14px"}, 
+                               "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+                               "nav-link-selected": {"font-size": "14px", "background-color": "#072146"}})
 
 if selected == 'P&L':
 
@@ -75,7 +75,7 @@ if selected == 'P&L':
         st.markdown(f'<a href="{url}" style="display: inline-block; padding: 5px 10px; background-color: #fffff; color: #454752; text-align: center; text-decoration: none; font-size: 16px; border-radius: 8px; border: 1px solid #e0e0e2;">Download Full Data</a>',
                     unsafe_allow_html=True)
         
-elif selected == "+ Banks":
+elif selected == "+Banks":
         selector = st.selectbox("Select a Date",
                             dates_full,
                             placeholder="Select date",
