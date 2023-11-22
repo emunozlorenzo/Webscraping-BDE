@@ -24,13 +24,13 @@ st.title('IBEX 35 BANKS')
 
 # horizontal menu
 selected = option_menu(None, 
-                       ["P&L", "+ Banks", "Stocks"], 
+                       ["P&L", "+Banks", "Stocks"], 
                        icons=['list-task', 'bank2', "graph-up"], 
                        menu_icon="cast", default_index=0, orientation="horizontal",
                        styles={# "container": {"padding": "0!important", "background-color": "#fafafa"},
-                               "icon": {"color": "#2DCCCD", "font-size": "18px"}, 
-                               "nav-link": {"font-size": "18px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-                               "nav-link-selected": {"font-size": "18px", "background-color": "#072146"}})
+                               "icon": {"color": "#2DCCCD", "font-size": "16px"}, 
+                               "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+                               "nav-link-selected": {"font-size": "16px", "background-color": "#072146"}})
 
 if selected == 'P&L':
 
@@ -94,10 +94,10 @@ elif selected == "+ Banks":
                             # label_visibility='collapsed',
                             index=2,
                             key='banks')
-        
-
+        my_bar = st.progress(0, text="Collecting Data from Banco de España")
+        my_bar.progress(75, text='Collecting Data from Banco de España')
         output = src.pnl_bank(url, st.session_state.banks)
-
+        my_bar.empty()
     
         st.dataframe(output.style.applymap(lambda _: "background-color: #002D62; color: white; font-weight: bold", subset=([0,6,11,15,17,19], slice(None))),
                      height=35*len(output)+38,
