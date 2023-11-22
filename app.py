@@ -139,11 +139,11 @@ elif selected == 'Stocks':
     @st.cache_data
     def last_update():
         dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC'}
-        dict_img = {'BBVA': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/2560px-BBVA_2019.svg.png',
-                    'Santander': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/2560px-Banco_Santander_Logotipo.svg.png',
-                    'Sabadell': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/BSabadell_Logo.svg/2560px-BSabadell_Logo.svg.png',
-                    'CaixaBank': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_CaixaBank.svg/2560px-Logo_CaixaBank.svg.png',
-                    'Bankinter': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Bankinter.svg/2560px-Bankinter.svg.png'}
+        dict_img = {'BBVA': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/238px-BBVA_2019.svg.png',
+                    'Santander': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Banco_Santander_Logotipo.svg/238px-Banco_Santander_Logotipo.svg.png',
+                    'Sabadell': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/BSabadell_Logo.svg/238px-BSabadell_Logo.svg.png',
+                    'CaixaBank': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_CaixaBank.svg/238px-Logo_CaixaBank.svg.png',
+                    'Bankinter': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Bankinter.svg/238px-Bankinter.svg.png'}
         df = pd.DataFrame()
         for k,v in dict_ibex35.items():
             comp = yf.Ticker(v)
