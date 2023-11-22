@@ -16,8 +16,11 @@ dates = [i['id'] for i in get_dates().json()['results']]
 dates_full = [i['text'] for i in get_dates().json()['results']]
 dict_dates = dict(zip(dates_full, dates))
 
-st.title('IBEX 35 BANKS')
-# # Front Image
+def header(url):
+     st.markdown(f'<p style="background-color:#072146;color:#ffffff;font-size:36px;border-radius:10px;text-align: center;">{url}</p>', unsafe_allow_html=True)
+        
+header('IBEX 35 BANKS')
+
 
 # url = './img/img4.JPG'
 # st.image(url,use_column_width=True)
