@@ -24,13 +24,13 @@ st.title('IBEX 35 BANKS')
 
 # horizontal menu
 selected = option_menu(None, 
-                       ["P&L", "+ Banks", "Stocks", 'Settings'], 
-                       icons=['list-task', 'bank2', "graph-up", 'gear'], 
+                       ["P&L", "+ Banks", "Stocks"], 
+                       icons=['list-task', 'bank2', "graph-up"], 
                        menu_icon="cast", default_index=0, orientation="horizontal",
                        styles={# "container": {"padding": "0!important", "background-color": "#fafafa"},
-                               "icon": {"color": "#2DCCCD", "font-size": "20px"}, 
-                               "nav-link": {"font-size": "20px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-                               "nav-link-selected": {"background-color": "#072146"}})
+                               "icon": {"color": "#2DCCCD", "font-size": "18px"}, 
+                               "nav-link": {"font-size": "18px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
+                               "nav-link-selected": {"font-size": "18px", "background-color": "#072146"}})
 
 if selected == 'P&L':
 
