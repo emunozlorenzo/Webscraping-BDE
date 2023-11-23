@@ -153,8 +153,8 @@ elif selected == 'Stocks':
             comp = yf.Ticker(v)
             hist = comp.history(period='1d')
             hist.reset_index(inplace=True)
-            hist['Bank'] = dict_img[k]
             hist['EPS'] = (comp.info['dividendRate']/hist['Close'][0])*100
+            hist['Bank'] = dict_img[k]
             df = pd.concat([df, hist], ignore_index=True, sort=False)
 
         df.drop(columns=['Date','Dividends','Stock Splits','Volume'], inplace=True)
