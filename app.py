@@ -141,7 +141,6 @@ elif selected == 'Stocks':
 
     header('Last Update')
     
-    @st.cache_data
     def last_update():
         dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC'}
         dict_img = {'BBVA': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/BBVA_2019.svg/238px-BBVA_2019.svg.png',
