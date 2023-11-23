@@ -168,20 +168,22 @@ def plot_yf(companies,period):
             'volume'    : close['Volume'],
         })
         p.line(x='date', y='adj close', line_width=2, color=dict_color[company], source=source)
-    p.add_tools(HoverTool(
-        tooltips=[
-            # ( 'date',   '@date{F%}'            ),
-            ( 'close',  '@{adj close}{0.00 a}€' ), # use @{ } for field names with spaces
-            ( 'volume', '@volume{0.00 a}'      ),
-        ],
+    p.add_tools(
+        HoverTool(
+            tooltips=[
+                ( 'date',   '@date{%F}'            ),
+                ( 'close',  '@{adj close}{%0.2f}€' ), # use @{ } for field names with spaces
+                ( 'volume', '@volume{0.00 a}'      ),
+            ],
 
-        formatters={
-            'date'      : 'datetime', # use 'datetime' formatter for 'date' field
-            'adj close' : 'printf',   # use 'printf' formatter for 'adj close' field
-                                    # use default 'numeral' formatter for other fields
-        },
+            formatters={
+                '@date'        : 'datetime', # use 'datetime' formatter for '@date' field
+                '@{adj close}' : 'printf',   # use 'printf' formatter for '@{adj close}' field
+                                             # use default 'numeral' formatter for other fields
+            },
 
-        # display a tooltip whenever the cursor is vertically in line with a glyph
-        mode='vline'
-    ))
+            # display a tooltip whenever the cursor is vertically in line with a glyph
+            mode='vline'
+        )
+    )
     return st.bokeh_chart(p, use_container_width=True)
