@@ -153,7 +153,7 @@ elif selected == 'Stocks':
             comp = yf.Ticker(v)
             hist = comp.history(period='1d')
             hist.reset_index(inplace=True)
-            hist['EPS'] = (comp.info['dividendRate']/hist['Close'][0])*100
+            hist['Dividend Yield'] = (comp.info['dividendRate']/hist['Close'][0])*100
             hist['Bank'] = dict_img[k]
             df = pd.concat([df, hist], ignore_index=True, sort=False)
 
@@ -175,6 +175,13 @@ elif selected == 'Stocks':
             "Bank", help="Streamlit app preview screenshots",
             width='medium',
         ),
+        "Dividend Yield": st.column_config.NumberColumn(
+        "Stock Dividend Yield",
+        help="Stock Dividend Yield",
+        min_value=0,
+        max_value=1000,
+        step=1,
+        format="%d\%",
     },
      height=35*len(table)+38,
      width = 700,
