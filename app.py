@@ -157,7 +157,7 @@ elif selected == 'Stocks':
             hist['EPS'] = (comp.info['dividendRate']/hist['Close'][0])*100
             df = pd.concat([df, hist], ignore_index=True, sort=False)
 
-        df.drop(columns=['Date','Dividends','Stock Splits'], inplace=True)
+        df.drop(columns=['Date','Dividends','Stock Splits','Volume'], inplace=True)
         cols = df.columns
         return df[['Bank']+cols[0:5].to_list()]
     table = last_update()
