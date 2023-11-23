@@ -161,6 +161,7 @@ elif selected == 'Stocks':
         return df[['Bank']+cols[0:4].to_list()]
     table = last_update()
     table[table.columns[1:]] = table[table.columns[1:]].round(2)
+    table.rename(columns={'Close':'Close/Current'}, inplace=True)
     
     # st.dataframe(table,#.style.applymap(lambda _: "background-color: #002D62; color: white; font-weight: bold"),
     #              height=35*len(table)+38,
