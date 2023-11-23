@@ -154,11 +154,12 @@ elif selected == 'Stocks':
             hist = comp.history(period='1d')
             hist.reset_index(inplace=True)
             hist['Bank'] = dict_img[k]
+            hist['EPS'] = (comp.info['dividendRate']/hist['Close'][0])*100
             df = pd.concat([df, hist], ignore_index=True, sort=False)
 
         df.drop(columns=['Date','Dividends','Stock Splits'], inplace=True)
         cols = df.columns
-        return df[['Bank']+cols[0:4].to_list()]
+        return df[['Bank']+cols[0:5].to_list()]
     table = last_update()
     table[table.columns[1:]] = table[table.columns[1:]].round(2)
     table.rename(columns={'Close':'Close/Current'}, inplace=True)
