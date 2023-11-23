@@ -181,7 +181,7 @@ elif selected == 'Stocks':
         min_value=0,
         max_value=1000,
         step=1,
-        format="%d\%",
+        format="%d\%",)
     },
      height=35*len(table)+38,
      width = 700,
