@@ -175,13 +175,13 @@ elif selected == 'Stocks':
             "Bank", help="Streamlit app preview screenshots",
             width='medium',
         ),
-        "Dividend Yield": st.column_config.NumberColumn(
-        "Stock Dividend Yield",
-        help="Stock Dividend Yield",
-        min_value=0,
-        max_value=1000,
-        step=1,
-        format="%.2f%",)
+        # "Dividend Yield": st.column_config.NumberColumn(
+        # "Stock Dividend Yield",
+        # help="Stock Dividend Yield",
+        # min_value=0,
+        # max_value=1000,
+        # step=1,
+        # format="%.2f%",)
     },
      height=35*len(table)+38,
      width = 700,
