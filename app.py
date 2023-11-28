@@ -20,7 +20,7 @@ dict_dates = dict(zip(dates_full, dates))
 def header(url):
      st.markdown(f'<p style="background-color:#072146;color:#ffffff;font-size:36px;border-radius:10px;text-align: center;">{url}</p>', unsafe_allow_html=True)
         
-header('IBEX 35 BANKS')
+header('BRE_AI_KING NEWS DATA')
 
 
 # url = './img/img4.JPG'
@@ -28,7 +28,7 @@ header('IBEX 35 BANKS')
 
 # horizontal menu
 selected = option_menu(None, 
-                       ["P&L", "+Banks", "Stocks"], 
+                       ["Stocks", "P&L", "+Banks"], 
                        icons=['list-task', 'bank2', "graph-up"], 
                        menu_icon="cast", default_index=0, orientation="horizontal",
                        styles={# "container": {"padding": "0!important", "background-color": "#fafafa"},
