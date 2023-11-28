@@ -158,7 +158,7 @@ def plot_yf(companies,period):
     p.axis.axis_line_color = None
     for company in companies:
         comp = yf.Ticker(dict_ibex35[company])
-        hist = comp.history(period=period)
+        hist = comp.history(period=period, auto_adjust = False)
         close = hist[['Close','Volume']]
         close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d')
         close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
