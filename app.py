@@ -45,9 +45,10 @@ if selected == 'P&L':
                             index=1,
                             key='selector')
 
-    my_bar = st.progress(0, text="Collecting Data from Banco de España")
+    
 
     try:
+        my_bar = st.progress(0, text="Collecting Data from Banco de España")
         # Estado Financiero
         get2 = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dates[1]}/select2-estados-es.json')
         pnl = [i['id'] for i in get2.json()['results'][1]['children'] if i['text'] == 'Cuenta de pérdidas y ganancias consolidada pública'][0]
@@ -82,9 +83,10 @@ if selected == 'P&L':
                         unsafe_allow_html=True)
     except:
         message = st.chat_message("assistant")
-        message.write("Hello human")    
+        message.write("The selected date is not avalible. Please, select another date")    
         
 elif selected == "+Banks":
+    try:
         selector = st.selectbox("Select a Date",
                             dates_full,
                             placeholder="Select date",
@@ -132,6 +134,9 @@ elif selected == "+Banks":
         with col2:
             st.markdown(f'<a href="{url}" style="display: inline-block; padding: 5px 10px; background-color: #fffff; color: #454752; text-align: center; text-decoration: none; font-size: 16px; border-radius: 8px; border: 1px solid #e0e0e2;">Download Full Data</a>',
                         unsafe_allow_html=True)
+    except:
+        message = st.chat_message("assistant")
+        message.write("The selected date is not avalible. Please, select another date") 
             
 elif selected == 'Stocks':
     dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC'}
