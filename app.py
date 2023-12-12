@@ -84,6 +84,7 @@ elif selected == "+Banks":
                             dates_full,
                             placeholder="Select date",
                             # label_visibility='collapsed',
+                            index=1,
                             key='selector')
         # Estado Financiero
         get2 = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dates[1]}/select2-estados-es.json')
