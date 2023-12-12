@@ -42,12 +42,13 @@ if selected == 'P&L':
                             dates_full,
                             placeholder="Select date",
                             # label_visibility='collapsed',
+                            index=1,
                             key='selector')
 
     my_bar = st.progress(0, text="Collecting Data from Banco de España")
 
     # Estado Financiero
-    get2 = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dates[0]}/select2-estados-es.json')
+    get2 = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dates[1]}/select2-estados-es.json')
     pnl = [i['id'] for i in get2.json()['results'][1]['children'] if i['text'] == 'Cuenta de pérdidas y ganancias consolidada pública'][0]
     url = f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dict_dates[st.session_state.selector]}/{pnl}/{pnl}_{dict_dates[st.session_state.selector]}.xls'
 
@@ -84,10 +85,9 @@ elif selected == "+Banks":
                             dates_full,
                             placeholder="Select date",
                             # label_visibility='collapsed',
-                            index=1,
                             key='selector')
         # Estado Financiero
-        get2 = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dates[1]}/select2-estados-es.json')
+        get2 = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dates[0]}/select2-estados-es.json')
         pnl = [i['id'] for i in get2.json()['results'][1]['children'] if i['text'] == 'Cuenta de pérdidas y ganancias consolidada pública'][0]
         url = f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dict_dates[st.session_state.selector]}/{pnl}/{pnl}_{dict_dates[st.session_state.selector]}.xls'
         ent = requests.get(f'https://www.bde.es/app/sif/documentosAsociaciones/periodos/{dict_dates[st.session_state.selector]}/{pnl}/select2-entidades-es.json')
