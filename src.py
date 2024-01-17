@@ -211,7 +211,7 @@ def plot_yf_per_change(companies,period):
                   'Telefónica':'#003145','Iberdrola':'#759F2F','IAG':'#DA162A','Grifols':'#004186',
                  }
     p = figure(height =250, x_axis_type="datetime", tools="", toolbar_location=None,
-               title=",".join(companies), sizing_mode="scale_width")
+               sizing_mode="scale_width")
     p.background_fill_color="#f5f5f5"
     p.grid.grid_line_color="white"
     p.yaxis.axis_label = 'Percentage'
