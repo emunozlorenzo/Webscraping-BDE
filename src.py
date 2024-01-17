@@ -151,7 +151,7 @@ def plot_yf(companies,period):
                    'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC', 'IBEX 35':'^IBEX',
                   }
     dict_color = {'BBVA':'#004481','Santander':'#ec0000','Sabadell':'#0099cc','CaixaBank':'#000000','Bankinter':'#ff7300','Unicaja':'#4E9E47', # Bancos
-                  'Telefónica':'#003145','Iberdrola':'#759F2F','IAG':'#DA162A','Grifols':'#004186',
+                  'Telefónica':'#003145','Iberdrola':'#759F2F','IAG':'#DA162A','Grifols':'#004186','IBEX 35':'#ffa500',
                  }
     p = figure(height =250, x_axis_type="datetime", tools="", toolbar_location=None,
                title=",".join(companies), sizing_mode="scale_width")
