@@ -148,6 +148,8 @@ elif selected == 'Stocks':
     period_ = st.selectbox(label='Select Period', options=periods, index=5, key='stock_select_box2')
     
     src.plot_yf(companies=companies,period=period_)
+
+    src.plot_yf_per_change(companies=companies,period=period_)
     
     def header(url):
          st.markdown(f'<p style="background-color:#072146;color:#ffffff;font-size:20px;border-radius:10px;text-align: center;">{url}</p>', unsafe_allow_html=True)

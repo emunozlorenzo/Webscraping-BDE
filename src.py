@@ -1,6 +1,6 @@
 import pandas as pd
 from bokeh.io import output_file, show
-from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import ColumnDataSource, HoverTool, Span
 from bokeh.plotting import figure
 import yfinance as yf
 import streamlit as st
@@ -198,4 +198,67 @@ def plot_yf(companies,period):
             mode='vline'
         )
     )
+    return st.bokeh_chart(p, use_container_width=True)
+
+def plot_yf_per_change(companies,period):
+    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI.MC', # Bancos
+                   'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC',
+                  }
+    dict_color = {'BBVA':'#004481','Santander':'#ec0000','Sabadell':'#0099cc','CaixaBank':'#000000','Bankinter':'#ff7300','Unicaja':'#4E9E47', # Bancos
+                  'Telefónica':'#003145','Iberdrola':'#759F2F','IAG':'#DA162A','Grifols':'#004186',
+                 }
+    p = figure(height =250, x_axis_type="datetime", tools="", toolbar_location=None,
+               title=",".join(companies), sizing_mode="scale_width")
+    p.background_fill_color="#f5f5f5"
+    p.grid.grid_line_color="white"
+    p.xaxis.axis_label = 'Date'
+    p.yaxis.axis_label = 'Percentage'
+    p.axis.axis_line_color = None
+    for company in companies:
+        comp = yf.Ticker(dict_ibex35[company])
+        if period != '1d':
+            hist = comp.history(period=period, auto_adjust = False)
+            hist = hist[1:]
+            first_value = hist['Close'].round(2)[0]
+            hist['Change'] = ((hist['Close'].round(2)/first_value)-1)*100
+            close = hist[['Close','Change']]
+            close.index = close.index.strftime('%Y-%m-%d')
+            close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d')
+            close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
+        else:
+            hist = comp.history(period=period, auto_adjust = False, interval='5m')
+            hist = hist[1:]
+            first_value = hist['Close'].round(2)[0]
+            hist['Change'] = ((hist['Close'].round(2)/first_value)-1)*100
+            close = hist[['Close','Change']]
+            close.index = close.index.strftime('%Y-%m-%d %HH:%MM')
+            close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d %HH:%MM')
+            close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
+        source = ColumnDataSource(data={
+            'date'      : close['Date'],
+            'change' : close['Change'],
+            'close'    : close['Close'],
+        })
+        p.line(x='date', y='change', line_width=2, color=dict_color[company], source=source)
+    p.add_tools(
+        HoverTool(
+            tooltips=[
+                ( 'date',   '@date{%F}'          ),
+                ( 'change',  '@{change}{%0.2f}%' ), # use @{ } for field names with spaces
+                ( 'close', '@close{0.00 a}'      ),
+            ],
+
+            formatters={
+                '@date'     : 'datetime', # use 'datetime' formatter for '@date' field
+                '@{change}' : 'printf',   # use 'printf' formatter for '@{adj close}' field
+                                             # use default 'numeral' formatter for other fields
+            },
+
+            # display a tooltip whenever the cursor is vertically in line with a glyph
+            mode='vline'
+        )
+    )
+    # Agregar la línea horizontal en y=0
+    zero_line = Span(location=0, dimension='width', line_color='#434b4d', line_width=2, line_dash='solid')
+    p.add_layout(zero_line)
     return st.bokeh_chart(p, use_container_width=True)
