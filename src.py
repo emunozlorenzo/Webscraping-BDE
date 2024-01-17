@@ -157,7 +157,6 @@ def plot_yf(companies,period):
                title=",".join(companies), sizing_mode="scale_width")
     p.background_fill_color="#f5f5f5"
     p.grid.grid_line_color="white"
-    p.xaxis.axis_label = 'Date'
     p.yaxis.axis_label = 'Price'
     p.axis.axis_line_color = None
     for company in companies:
@@ -199,7 +198,7 @@ def plot_yf(companies,period):
             },
 
             # display a tooltip whenever the cursor is vertically in line with a glyph
-            mode='vline'
+            mode='mouse'
         )
     )
     return st.bokeh_chart(p, use_container_width=True)
@@ -215,7 +214,6 @@ def plot_yf_per_change(companies,period):
                title=",".join(companies), sizing_mode="scale_width")
     p.background_fill_color="#f5f5f5"
     p.grid.grid_line_color="white"
-    p.xaxis.axis_label = 'Date'
     p.yaxis.axis_label = 'Percentage'
     p.axis.axis_line_color = None
     for company in companies:
@@ -246,7 +244,7 @@ def plot_yf_per_change(companies,period):
             'change': close['Change'],
             'close': close['Close'],
         })
-        p.line(x='date', y='change', line_width=1, color=dict_color[company], source=source)
+        p.line(x='date', y='change', line_width=2, color=dict_color[company], source=source)
         p.add_tools(
             HoverTool(
                 tooltips=[
@@ -267,6 +265,6 @@ def plot_yf_per_change(companies,period):
             )
         )
     # Agregar la línea horizontal en y=0
-    zero_line = Span(location=0, dimension='width', line_color='#434b4d', line_width=2, line_dash='solid')
+    zero_line = Span(location=0, dimension='width', line_color='#434b4d', line_width=1, line_dash='solid')
     p.add_layout(zero_line)
     return st.bokeh_chart(p, use_container_width=True)
