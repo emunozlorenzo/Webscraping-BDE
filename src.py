@@ -147,7 +147,7 @@ def pnl_bank(url, bank):
     return output
 
 def plot_yf(companies,period):
-    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI:MC', # Bancos
+    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI.MC', # Bancos
                    'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC',
                   }
     dict_color = {'BBVA':'#004481','Santander':'#ec0000','Sabadell':'#0099cc','CaixaBank':'#000000','Bankinter':'#ff7300','Unicaja':'#4E9E47', # Bancos

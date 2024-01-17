@@ -139,7 +139,7 @@ elif selected == "+Banks":
         message.write("The selected date is not avalible. Please, select another date") 
             
 elif selected == 'Stocks':
-    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI:MC', # Bancos
+    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI.MC', # Bancos
                    'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC',
                   }
     periods = ['1d','5d','1mo','3mo','6mo','1y','2y','5y','10y','ytd','max']
