@@ -140,7 +140,7 @@ elif selected == "+Banks":
             
 elif selected == 'Stocks':
     dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI.MC', # Bancos
-                   'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC',
+                   'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC', 'IBEX 35':'^IBEX',
                   }
     periods = ['1d','5d','1mo','3mo','6mo','1y','2y','5y','10y','ytd','max']
     companies = st.multiselect("Select a Company",options=sorted(list(dict_ibex35.keys())), default=sorted(list(dict_ibex35.keys()))[0], key='stock_select_box')
