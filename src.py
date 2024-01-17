@@ -147,8 +147,12 @@ def pnl_bank(url, bank):
     return output
 
 def plot_yf(companies,period):
-    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC'}
-    dict_color = {'BBVA':'#004481','Santander':'#ec0000','Sabadell':'#0099cc','CaixaBank':'#000000','Bankinter':'#ff7300'}
+    dict_ibex35 = {'BBVA':'BBVA.MC','Santander':'SAN.MC','Sabadell':'SAB.MC','CaixaBank':'CABK.MC','Bankinter':'BKT.MC','Unicaja':'UNI:MC', # Bancos
+                   'Telefónica':'TEF.MC','Iberdrola':'IBE.MC','IAG':'IAG.MC','Grifols':'GRF.MC',
+                  }
+    dict_color = {'BBVA':'#004481','Santander':'#ec0000','Sabadell':'#0099cc','CaixaBank':'#000000','Bankinter':'#ff7300','Unicaja':'#4E9E47',
+                  'Telefónica':'#003145','Iberdrola':'#759F2F','IAG':'#DA162A','Grifols':'004186',
+                 }
     p = figure(height =250, x_axis_type="datetime", tools="", toolbar_location=None,
                title=",".join(companies), sizing_mode="scale_width")
     p.background_fill_color="#f5f5f5"
