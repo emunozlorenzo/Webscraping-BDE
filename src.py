@@ -168,13 +168,16 @@ def plot_yf(companies,period):
             close.index = close.index.strftime('%Y-%m-%d')
             close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d')
             close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
+            close['Name'] = company
         else:
             hist = comp.history(period=period, auto_adjust = False, interval='5m')
             close = hist[['Close','Volume']]
             close.index = close.index.strftime('%Y-%m-%d %HH:%MM')
             close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d %HH:%MM')
             close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
+            close['Name'] = company
         source = ColumnDataSource(data={
+            'name': close['Name'],
             'date'      : close['Date'],
             'adj close' : close['Close'],
             'volume'    : close['Volume'],
@@ -183,9 +186,10 @@ def plot_yf(companies,period):
     p.add_tools(
         HoverTool(
             tooltips=[
-                ( 'date',   '@date{%F}'            ),
-                ( 'close',  '@{adj close}{%0.2f}€' ), # use @{ } for field names with spaces
-                ( 'volume', '@volume{0.00 a}'      ),
+                ( 'Company',   '@name'          ),
+                ( 'Date',   '@date{%F}'            ),
+                ( 'Close',  '@{adj close}{%0.2f}€' ), # use @{ } for field names with spaces
+                ( 'Volume', '@volume{0.00 a}'      ),
             ],
 
             formatters={
@@ -225,6 +229,7 @@ def plot_yf_per_change(companies,period):
             close.index = close.index.strftime('%Y-%m-%d')
             close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d')
             close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
+            close['Name'] = company
         else:
             hist = comp.history(period=period, auto_adjust = False, interval='5m')
             hist = hist[1:]
@@ -234,30 +239,33 @@ def plot_yf_per_change(companies,period):
             close.index = close.index.strftime('%Y-%m-%d %HH:%MM')
             close['Date'] = pd.to_datetime(close.index, format='%Y-%m-%d %HH:%MM')
             close["DateString"] = close["Date"].dt.strftime("%Y-%m-%d")
+            close['Name'] = company
         source = ColumnDataSource(data={
-            'date'      : close['Date'],
-            'change' : close['Change'],
-            'close'    : close['Close'],
+            'name': close['Name'],
+            'date': close['Date'],
+            'change': close['Change'],
+            'close': close['Close'],
         })
-        p.line(x='date', y='change', line_width=2, color=dict_color[company], source=source)
-    p.add_tools(
-        HoverTool(
-            tooltips=[
-                ( 'date',   '@date{%F}'          ),
-                ( 'change',  '@{change}{%0.2f}%' ), # use @{ } for field names with spaces
-                ( 'close', '@close{0.00 a}'      ),
-            ],
+        p.line(x='date', y='change', line_width=1, color=dict_color[company], source=source)
+        p.add_tools(
+            HoverTool(
+                tooltips=[
+                    ( 'Company',   '@name'          ),
+                    ( 'Date',   '@date{%F}'          ),
+                    ( '% Change',  '@{change}{%0.2f}%' ), # use @{ } for field names with spaces
+                    ( 'Close', '@close{0.00 a}'      ),
+                ],
 
-            formatters={
-                '@date'     : 'datetime', # use 'datetime' formatter for '@date' field
-                '@{change}' : 'printf',   # use 'printf' formatter for '@{adj close}' field
-                                             # use default 'numeral' formatter for other fields
-            },
+                formatters={
+                    '@date'     : 'datetime', # use 'datetime' formatter for '@date' field
+                    '@{change}' : 'printf',   # use 'printf' formatter for '@{adj close}' field
+                                              # use default 'numeral' formatter for other fields
+                },
 
-            # display a tooltip whenever the cursor is vertically in line with a glyph
-            mode='vline'
+                # display a tooltip whenever the cursor is vertically in line with a glyph
+                mode='mouse'
+            )
         )
-    )
     # Agregar la línea horizontal en y=0
     zero_line = Span(location=0, dimension='width', line_color='#434b4d', line_width=2, line_dash='solid')
     p.add_layout(zero_line)
