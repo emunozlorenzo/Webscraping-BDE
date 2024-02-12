@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Define the pages and their file paths
-pages = {'Stocks':'app2.py',
+pages = {'Stocks':'app.py',
          'P&L':'pages/p&l.py',
          '+Banks':'pages/banks.py'}
 
@@ -10,9 +10,11 @@ pages = {'Stocks':'app2.py',
 page_list = list(pages.keys())
 
 def nav(current_page=page_list[0]):
-    p = option_menu(None, page_list, 
-        default_index=page_list.index(current_page), 
+    p = option_menu(None,
+        page_list,
+        icons=['list-task', 'bank2', "graph-up"],
         menu_icon="cast",
+        default_index=page_list.index(current_page), 
         orientation="horizontal",
         styles={# "container": {"padding": "0!important", "background-color": "#fafafa"},
         "icon": {"color": "#2DCCCD", "font-size": "14px"}, 
