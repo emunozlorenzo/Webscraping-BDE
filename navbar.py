@@ -4,8 +4,8 @@ import os
 
 # Define the pages and their file paths
 pages = {'Stocks':'app.py',
-         'P&L':'p&l.py',
-         '+Banks':'banks.py'}
+         'P&L':'pages/p&l.py',
+         '+Banks':'pages/banks.py'}
 
 # Create a list of the page names
 page_list = list(pages.keys())
@@ -26,7 +26,7 @@ def nav(current_page=page_list[0]):
         if p == 'Stocks':
             path_to_page = os.path.join(os.getcwd(), "app.py")
         else:
-            path_to_page = os.path.join(os.getcwd(), "pages", pages[p])
+            path_to_page = os.path.join(os.getcwd(), "pages", pages[p].split('/')[1])
         st.switch_page(pages[p])
 
 
