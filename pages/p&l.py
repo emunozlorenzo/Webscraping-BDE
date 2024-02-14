@@ -56,10 +56,10 @@ try:
     output2 = output.append(ratio_row, ignore_index=True, inplace=False)
     output2 = output2[output2['Importe en euros'] == 'Ratio de Eficiencia']
     output2[columns_to_keep] = output2[columns_to_keep].round(3)*100
-    st.dataframe(output2),
-                height=35*len(output2)+38,
-                width = 700,
-                hide_index=True)
+    st.dataframe(output2,
+                 height=35*len(output2)+38,
+                 width = 700,
+                 hide_index=True)
 
     col1, col2 = st.columns(2)
 
