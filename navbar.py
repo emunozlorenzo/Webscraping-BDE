@@ -27,6 +27,6 @@ def nav(current_page=page_list[0]):
             path_to_page = os.path.join(os.getcwd(), "app.py")
         else:
             path_to_page = os.path.join(os.getcwd(), "pages", pages[p])
-        st.switch_page(path_to_page)
+        st.switch_page(pages[p])
 
 
