@@ -23,3 +23,5 @@ def nav(current_page=page_list[0]):
 
     if current_page != p:
         st.switch_page(pages[p])
+
+
