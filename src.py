@@ -47,6 +47,7 @@ def pnl_all(url):
     df.loc['10. Otros Resultados'] = (-1*df.iloc[38]) + (-1*df.iloc[39]) + df.iloc[43] + df.iloc[45]
     df.loc['12. Impuestos sobre Beneficio'] = -1*(df.loc['12. Impuestos sobre Beneficio'])
     df.loc['14. Minoritarios'] = -1*(df.loc['14. Minoritarios'])
+    df.loc['16. Ratio de Eficiencia %'] = (-1*df.loc['6. Gastos de Explotación'] / df.loc['5. MARGEN BRUTO']) * 100
 
     df = df.iloc[2:]
 
@@ -69,8 +70,10 @@ def pnl_all(url):
                     '12. Impuestos sobre Beneficio',
                     '13. RESULTADO DEL EJERCICIO',
                     '14. Minoritarios',
-                    '15. RESULTADO ATRIBUIDO'
+                    '15. RESULTADO ATRIBUIDO',
+                    '16. Ratio de Eficiencia %',
                     ]]
+    
     output = output.round(0).astype(int)
     output.reset_index(inplace=True)
     output['Importe en euros'] = output['Importe en euros'].str.split('.').str[1]
@@ -117,6 +120,7 @@ def pnl_bank(url, bank):
     df.loc['10. Otros Resultados'] = (-1*df.iloc[38]) + (-1*df.iloc[39]) + df.iloc[43] + df.iloc[45]
     df.loc['12. Impuestos sobre Beneficio'] = -1*(df.loc['12. Impuestos sobre Beneficio'])
     df.loc['14. Minoritarios'] = -1*(df.loc['14. Minoritarios'])
+    df.loc['16. Ratio de Eficiencia %'] = (-1*df.loc['6. Gastos de Explotación'] / df.loc['5. MARGEN BRUTO']) * 100
 
     df = df.iloc[2:]
 
@@ -139,7 +143,8 @@ def pnl_bank(url, bank):
                     '12. Impuestos sobre Beneficio',
                     '13. RESULTADO DEL EJERCICIO',
                     '14. Minoritarios',
-                    '15. RESULTADO ATRIBUIDO'
+                    '15. RESULTADO ATRIBUIDO',
+                    '16. Ratio de Eficiencia %',
                     ]]
     output = output.round(0).astype(int)
     output.reset_index(inplace=True)
