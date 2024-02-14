@@ -50,12 +50,12 @@ try:
                 hide_index=True)
     
     # Ratios
-    columns_to_keep = [col for col in output.columns if col != 'Importe en euros']
-    ratio_row = abs(output.iloc[7][columns_to_keep] / output.iloc[6][columns_to_keep])
-    ratio_row['Importe en euros'] = 'Ratio de Eficiencia'
-    output2 = output.append(ratio_row, ignore_index=True, inplace=False)
-    output2 = output2[output2['Importe en euros'] == 'Ratio de Eficiencia']
-    output2[columns_to_keep] = output2[columns_to_keep].round(3)*100
+    # columns_to_keep = [col for col in output.columns if col != 'Importe en euros']
+    # ratio_row = abs(output.iloc[7][columns_to_keep] / output.iloc[6][columns_to_keep])
+    # ratio_row['Importe en euros'] = 'Ratio de Eficiencia'
+    # output2 = output.append(ratio_row, ignore_index=True, inplace=False)
+    # output2 = output2[output2['Importe en euros'] == 'Ratio de Eficiencia']
+    # output2[columns_to_keep] = output2[columns_to_keep].round(3)*100
     # st.dataframe(output2,
     #             #  height=35*len(output2)+38,
     #              width = 700,
