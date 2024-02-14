@@ -49,7 +49,7 @@ try:
     output = src.pnl_bank(url, st.session_state.banks)
     my_bar.empty()
 
-    st.dataframe(output.style.applymap(lambda _: "background-color: #002D62; color: white; font-weight: bold", subset=([0,6,11,15,17,19], slice(None))),
+    st.dataframe(output.style.applymap(lambda _: "background-color: #002D62; color: white; font-weight: bold", subset=([0,6,11,15,17,19], slice(None))).applymap(lambda _: "background-color: #2DCCCD; color: white; font-weight: bold", subset=([20], slice(None))),
                     height=35*len(output)+38,
                     width = 700,
                     hide_index=True)
